@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 public class Image {
 
 	private BufferedImage image;
+	private BufferedImage generated_image;
 	private String path_image;
 
 	public Image(String path) {
@@ -27,6 +28,17 @@ public class Image {
 		}
 
 	}
+	
+	public void createImage(){
+		
+		setGenerated_image(new BufferedImage(
+				getImage().getWidth(),
+				getImage().getHeight(), 
+				BufferedImage.TYPE_INT_RGB));
+		
+		
+		
+	}
 
 	public int[] listRGB() {
 
@@ -40,17 +52,21 @@ public class Image {
 	}
 
 	public BufferedImage getImage() {
-
 		return image;
-
 	}
 
 	public void setImage(BufferedImage img) {
-
 		this.image = img;
-
 	}
 
+	public BufferedImage getGenerated_image() {
+		return generated_image;
+	}
+
+	public void setGenerated_image(BufferedImage generated_image) {
+		this.generated_image = generated_image;
+	}
+	
 	public String getPath_image() {
 		return path_image;
 	}
