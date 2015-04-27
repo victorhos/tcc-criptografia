@@ -10,7 +10,7 @@ public class EngineRSA {
 	public static EngineRSA create (KeyRSA e, KeyRSA d)
 	{
 		if (e == null || d == null) return null;
-		return (new EngineRSA(e,d));
+		return (new EngineRSA(e, d));
 	}
 	
 	private EngineRSA(KeyRSA e, KeyRSA d){
@@ -25,4 +25,5 @@ public class EngineRSA {
 	BigInteger decript (BigInteger cipher){
 		return cipher.modPow(d.getKey() , d.getModulo());
 	}
+
 }

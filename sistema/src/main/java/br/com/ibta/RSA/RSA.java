@@ -5,39 +5,40 @@ import java.util.Random;
 
 public class RSA {
 
-	private static int KEY_LENGTH = 16;
+	private static int KEY_LENGTH = 8;
 
-	/*
-	 * Método principal, responsável pelo teste do algoritmo
-	 */
-	
+	public static boolean isPrime(BigInteger n) {
+
+		for (int i = 2; 2 * i < n.intValue(); i++) {
+
+			if (n.intValue() % i == 0) {
+				return false;
+			}
+
+		}
+
+		return true;
+	}
+
 	public static void main(String args[]) {
-		
-		
-		System.out.println("RSA CRYPTOSYSTEM");
+
 		KeyRSA keys[];
-		
+
 		try {
-			
+
 			keys = RSA.createKeys(KEY_LENGTH);
+
 			System.out.println("Encript Key = " + keys[0]);
 			System.out.println("Decript Key = " + keys[1]);
 
 			Random rd = new Random(System.currentTimeMillis());
 			EngineRSA eng = EngineRSA.create(keys[0], keys[1]);
-			
+
 			BigInteger t1, t2, t3;
 			t1 = new BigInteger(128, rd);
 			t2 = eng.encript(t1);
 			t3 = eng.decript(t2);
-			
-			/*
-			BigInteger t1, t2, t3;
-			t1 = new BigInteger(;
-			t2 = eng.encript(t1);
-			t3 = eng.decript(t2);
-			*/
-			
+
 			System.out.println("plain = " + t1.toString());
 			System.out.println("cipher = " + t2);
 			System.out.println("plain = " + t3.toString());
@@ -54,20 +55,15 @@ public class RSA {
 	 */
 
 	public static KeyRSA[] createKeys(int bitLength) throws ArithmeticException {
-		
+
 		BigInteger p, q;
 		BigInteger e, d, n;
 
-		// Verifica se o bitLength eh valido
-		// bitLength eh o tamanho aproximado da chave
 		if (bitLength < 2)
 			throw (new ArithmeticException("Err: bitLength inv�lido"));
-		// inicializa o gerador de numeros aleat�rios
+		
 		Random rd;
 		rd = new Random(System.currentTimeMillis());
-
-		// encontra tr�s n�meros primos (p,q,d) diferentes
-		// e garante que o maior ser� o d
 
 		BigInteger t1, t2, t3;
 		t1 = new BigInteger(bitLength, CERTAINTY, rd);
@@ -101,18 +97,21 @@ public class RSA {
 				t2 = new BigInteger(bitLength, CERTAINTY, rd);
 			}
 		}
-		// encontra o valor de Phi = (p-1)*(q-1)
+		
 		BigInteger Phi;
 		BigInteger unid = new BigInteger("1");
 		Phi = (p.subtract(unid).multiply(q.subtract(unid)));
-		// calcula o valor de e
+		
 		e = d.modInverse(Phi);
-		// calcula n=p*q
 		n = p.multiply(q);
+		
 		// cria duas chaves, a de criptografia e a de decriptografia
 		KeyRSA keys[] = new KeyRSA[2];
+
 		keys[0] = KeyRSA.create(e, n);
 		keys[1] = KeyRSA.create(d, n);
+		
 		return keys;
 	}
+
 }

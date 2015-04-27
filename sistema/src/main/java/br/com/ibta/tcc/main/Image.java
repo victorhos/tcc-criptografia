@@ -12,6 +12,12 @@ public class Image {
 	private static BufferedImage image;
 	private static String path_image;
 
+	public Image(String path) {
+
+		Image.path_image = path;
+
+	}
+
 	public static void loadImage() {
 
 		try {
@@ -22,12 +28,33 @@ public class Image {
 
 	}
 
+	public int[] listRGB() {
+
+		int[] list;
+
+		list = getImage().getRGB(
+				0, 
+				0, 
+				getImage().getWidth(),
+				getImage().getHeight(), 
+				null, 
+				0, 
+				getImage().getWidth());
+
+		return list;
+
+	}
+
 	public BufferedImage getImage() {
+
 		return image;
+
 	}
 
 	public static void setImage(BufferedImage img) {
+
 		image = img;
+
 	}
 
 	public static String getPath_image() {
