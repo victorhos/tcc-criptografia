@@ -1,43 +1,41 @@
 package br.com.ibta.tcc.main;
 
-import ij.ImagePlus;
-import ij.io.Opener;
-
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 
-import net.imglib2.img.Img;
-import net.imglib2.type.NativeType;
-import net.imglib2.type.numeric.NumericType;
+import javax.imageio.ImageIO;
 
 public class Image {
 
-	private String path_image;
-	private Image image;
-	
-	public Image(String path){
-		
-		this.path_image = path;
-		
+	private static BufferedImage image;
+	private static String path_image;
+
+	public static void loadImage() {
+
+		try {
+			setImage(ImageIO.read(new File(getPath_image())));
+		} catch (IOException e) {
+			System.out.println("Erro ao carregar a img");
+		}
+
 	}
-	
-	public String getPath_image() {
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public static void setImage(BufferedImage img) {
+		image = img;
+	}
+
+	public static String getPath_image() {
 		return path_image;
 	}
 
 	public void setPath_image(String path_image) {
-		this.path_image = path_image;
+		Image.path_image = path_image;
 	}
 
-	public < T extends NumericType< T > & NativeType< T > > Image(){
-		File file = new File( "DrosophilaWing.tif" );
-		 
-        // open a file with ImageJ
-        //final ImagePlus imp = new Opener().openImage( file.getAbsolutePath() );
- 
-        // display it via ImageJ
-        //imp.show();
- 
-     // 
-	}
-	
 }
