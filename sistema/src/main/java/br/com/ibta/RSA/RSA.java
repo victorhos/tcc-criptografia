@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class RSA {
 
-	private static int KEY_LENGTH = 8;
+	private static int KEY_LENGTH = 64;
 
 	public static boolean isPrime(BigInteger n) {
 
@@ -35,13 +35,13 @@ public class RSA {
 			EngineRSA eng = EngineRSA.create(keys[0], keys[1]);
 
 			BigInteger t1, t2, t3;
-			t1 = new BigInteger(128, rd);
+			t1 = new BigInteger(5, rd);
 			t2 = eng.encript(t1);
 			t3 = eng.decript(t2);
 
-			System.out.println("plain = " + t1.toString());
-			System.out.println("cipher = " + t2);
-			System.out.println("plain = " + t3.toString());
+			System.out.println("plain = " + t1.toString(10));
+			System.out.println("cipher = " + t2.toString(10));
+			System.out.println("plain = " + t3.toString(10));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class RSA {
 
 		if (bitLength < 2)
 			throw (new ArithmeticException("Err: bitLength inv�lido"));
-		
+
 		Random rd;
 		rd = new Random(System.currentTimeMillis());
 
@@ -97,20 +97,20 @@ public class RSA {
 				t2 = new BigInteger(bitLength, CERTAINTY, rd);
 			}
 		}
-		
+
 		BigInteger Phi;
 		BigInteger unid = new BigInteger("1");
 		Phi = (p.subtract(unid).multiply(q.subtract(unid)));
-		
+
 		e = d.modInverse(Phi);
 		n = p.multiply(q);
-		
+
 		// cria duas chaves, a de criptografia e a de decriptografia
 		KeyRSA keys[] = new KeyRSA[2];
 
 		keys[0] = KeyRSA.create(e, n);
 		keys[1] = KeyRSA.create(d, n);
-		
+
 		return keys;
 	}
 
