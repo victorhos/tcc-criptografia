@@ -10,20 +10,37 @@ import javax.imageio.ImageIO;
 
 public class Starter {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+
+		Image qq = new Image("/Users/victor/Pictures/image2px.jpg");
+		qq.loadImage();
+		qq.setGeradaPathImage("/Users/victor/Pictures/teste_lili.png");
+		qq.createImage();
+		qq.listRGB();
+		qq.alterarImg();
 
 		BufferedImage img = null;
 
 		try {
-			img = ImageIO.read(new File("/Users/victor/Pictures/image2px.jpg"));
+			img = ImageIO.read(new File("/Users/victor/image2px.jpg"));
 		} catch (IOException e) {
-			// System.out.println("Erro ao carregar a img");
+			System.out.println("Erro ao carregar a img");
 		}
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+		System.out.println();
+
+		img.getRGB(0, 0, img.getWidth(), img.getHeight(), null, 0,
+				img.getWidth());
+
+		img.setRGB(0, 0, -16777216);
+		img.setRGB(1, 0, -1);
+		
+		BufferedImage aa = img;
+		
 		try {
-			ImageIO.write(img, "jpg", baos);
+			ImageIO.write(aa, "png", new File("/Users/victor/image2pxx.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +49,7 @@ public class Starter {
 				img.getWidth())[0];
 		Integer b = convert(q);
 
-		System.out.println(">>>>>>>>>>>" + q.getClass());
+		// System.out.println(">>>>>>>>>>>" + q.getClass());
 
 		// COR
 		System.out.println(q);
@@ -41,7 +58,7 @@ public class Starter {
 
 		System.out.println(Integer.toHexString(0));
 
-		Color color = new Color(q);
+		Color color = new Color(-16777216);
 		int red = color.getRed();
 		int green = color.getGreen();
 		int blue = color.getBlue();

@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 public class Image {
 
 	private BufferedImage image;
-	private BufferedImage generatedImage;
+	private BufferedImage geradaImage;
 	private String pathImage;
-	private String generatedPathImage;
+	private String geradaPathImage;
 
 	public Image(String path) {
 
@@ -22,39 +22,48 @@ public class Image {
 	public void loadImage() {
 
 		try {
+			
 			setImage(ImageIO.read(new File(getPathImage())));
-			System.out.println("----------------------------------");
-			System.out.println("Imagem carregada com sucesso");
+			Mensagem.imgSucesso();
+			
 		} catch (IOException e) {
-			System.out.println("----------------------------------");
-			System.out.println("Erro ao carregar imagem");
+			
+			Mensagem.imgFalha();
 			System.out.println(e.getLocalizedMessage());
+		
 		}
 
 	}
 
-	public void createImage() throws IOException {
+	public void createImage() {
 
-		setGeneratedImage(new BufferedImage(getImage().getWidth(), getImage()
-				.getHeight(), BufferedImage.TYPE_INT_RGB));
+		setGeradaImage(
+				new BufferedImage(
+						getImage().getWidth(), 
+						getImage().getHeight(), 
+						BufferedImage.TYPE_INT_RGB));
 
-		File imageFile = new File(getPathImage());
+	}
+	
+	public void alterarImg() throws IOException{
 
-		ImageIO.write(getGeneratedImage(), "png", imageFile);
+		File imageFile = new File(getGeradaPathImage());
+		
+		ImageIO.write(getGeradaImage(), "png", imageFile);
 
-		System.out.println("----------------------------------");
-		System.out.println("Imagem criada em:");
-		System.out.println(imageFile.getPath());
-
+		Mensagem.imgCriada(imageFile.getPath());
+		
 	}
 
 	public int[] listRGB() {
 
 		int[] list;
 
-		list = getImage().getRGB(0, 0, getImage().getWidth(),
-				getImage().getHeight(), null, 0, getImage().getWidth());
+		list = getGeradaImage().getRGB(0, 0, getGeradaImage().getWidth(),
+				getGeradaImage().getHeight(), null, 0, getGeradaImage().getWidth());
 
+		list[0] = -1;
+		
 		return list;
 
 	}
@@ -67,12 +76,12 @@ public class Image {
 		this.image = image;
 	}
 
-	public BufferedImage getGeneratedImage() {
-		return generatedImage;
+	public BufferedImage getGeradaImage() {
+		return geradaImage;
 	}
 
-	public void setGeneratedImage(BufferedImage generatedImage) {
-		this.generatedImage = generatedImage;
+	public void setGeradaImage(BufferedImage geradaImage) {
+		this.geradaImage = geradaImage;
 	}
 
 	public String getPathImage() {
@@ -83,12 +92,12 @@ public class Image {
 		this.pathImage = pathImage;
 	}
 
-	public String getGeneratedPathImage() {
-		return generatedPathImage;
+	public String getGeradaPathImage() {
+		return geradaPathImage;
 	}
 
-	public void setGeneratedPathImage(String generatedPathImage) {
-		this.generatedPathImage = generatedPathImage;
+	public void setGeradaPathImage(String geradaPathImage) {
+		this.geradaPathImage = geradaPathImage;
 	}
 
 }
