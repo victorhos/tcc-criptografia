@@ -2,7 +2,7 @@ package br.com.ibta.tcc.main;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
+//import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,13 +12,14 @@ public class Starter {
 
 	public static void main(String[] args) throws IOException {
 
+		/*
 		Image qq = new Image("/Users/victor/Pictures/image2px.jpg");
 		qq.loadImage();
-		qq.setGeradaPathImage("/Users/victor/Pictures/teste_lili.png");
+		qq.setGeradaPathImage("/Users/victor/Pictures/teste.png");
 		qq.createImage();
 		qq.listRGB();
 		qq.alterarImg();
-
+		*/
 		BufferedImage img = null;
 
 		try {
@@ -27,7 +28,7 @@ public class Starter {
 			System.out.println("Erro ao carregar a img");
 		}
 
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		//ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		System.out.println();
 
