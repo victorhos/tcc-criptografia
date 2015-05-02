@@ -32,7 +32,9 @@ public class Utils {
 
 	}
 
-	public static String timer(long nanoSecs) {
+	public static String timer(long endTime, long startTime) {
+		
+		long nanoSecs = (endTime - startTime);
 
 		int minutes = (int) (nanoSecs / 60000000000.0);
 		int seconds = (int) (nanoSecs / 1000000000.0) - (minutes * 60);
@@ -53,8 +55,8 @@ public class Utils {
 
 		return minutes + "min " + seconds + "s " + millisecs + "ms";
 
-		System.out.println(String.format("%-2d: %s", (i + 1), toString(endTime
-				- startTime)));
+		//System.out.println(String.format("%-2d: %s", (i + 1), toString(endTime
+		//		- startTime)));
 
 	}
 

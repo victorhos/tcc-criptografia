@@ -16,8 +16,7 @@ public class Teste {
 		
 		img.createNewImage();
 		
-		long duration = (endTime - startTime);
-		System.out.println("Duração: " + duration + " milisegundos");
+		System.out.println(Utils.timer(endTime, startTime));
 
 	}
 

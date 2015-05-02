@@ -64,9 +64,9 @@ public class Image {
 
 			for (int y = 0; y < getImage().getHeight(); y++) {
 
-				System.out.println(getImage().getRGB(x, y));
-				getImage().setRGB(x, y, -1);
-				System.out.println(getImage().getRGB(x, y));
+				//System.out.println(getImage().getRGB(x, y));
+				getImage().setRGB(x, y, -298723);
+				//System.out.println(getImage().getRGB(x, y));
 
 			}
 
