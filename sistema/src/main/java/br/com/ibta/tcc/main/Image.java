@@ -31,11 +31,11 @@ public class Image {
 
 			setImage(ImageIO.read(file));
 
-			Mensagem.imgSucesso();
+			Utils.imgSucesso();
 
 		} catch (IOException e) {
 
-			Mensagem.imgFalha();
+			Utils.imgFalha();
 			System.out.println(e.getLocalizedMessage());
 
 		}
@@ -50,7 +50,7 @@ public class Image {
 		try {
 
 			ImageIO.write(getNewImage(), getExtensao(), file);
-			Mensagem.imgCriada(file.getAbsolutePath());
+			Utils.imgCriada(file.getAbsolutePath());
 
 		} catch (IOException e) {
 			e.printStackTrace();
