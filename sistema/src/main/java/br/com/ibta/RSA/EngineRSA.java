@@ -18,11 +18,11 @@ public class EngineRSA {
 		this.d = d;
 	}
 
-	BigInteger encript(BigInteger plain) {
+	public BigInteger encript(BigInteger plain) {
 		return plain.modPow(e.getKey(), e.getModulo());
 	}
 
-	BigInteger decript(BigInteger cipher) {
+	public BigInteger decript(BigInteger cipher) {
 		return cipher.modPow(d.getKey(), d.getModulo());
 	}
 

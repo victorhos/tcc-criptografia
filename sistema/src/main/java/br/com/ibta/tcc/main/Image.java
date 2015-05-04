@@ -3,8 +3,12 @@ package br.com.ibta.tcc.main;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
+
+import br.com.ibta.RSA.EngineRSA;
 
 public class Image {
 
@@ -58,15 +62,31 @@ public class Image {
 
 	}
 
-	public void transformImage() {
+	public void transformImage(EngineRSA eng) {
 
-		for (int x = 0; x < getImage().getWidth(); x++) {
+		//for (int x = 0; x < getImage().getWidth(); x++) {
+		for (int x = 0; x < 1; x++) {
+			//for (int y = 0; y < getImage().getHeight(); y++) {
+			for (int y = 0; y < 1; y++) {
+				BigInteger t1, t2, t3;
 
-			for (int y = 0; y < getImage().getHeight(); y++) {
+				t1 = BigInteger.valueOf(getImage().getRGB(x, y) * (-1));
+				t2 = eng.encript(t1);
+				t3 = eng.decript(t2);
 
-				//System.out.println(getImage().getRGB(x, y));
-				getImage().setRGB(x, y, -298723);
-				//System.out.println(getImage().getRGB(x, y));
+				Integer a = 16777215;
+				System.out.println("----------------------------------");
+				System.out.println("plain = " + t1.toString(10));
+				System.out.println("cipher = " + t2.toString(10));
+				System.out.println("cipher bin = " + t2.toString(2));
+				System.out.println("branco " + Integer.toBinaryString(a).length());
+				System.out.println("plain = " + t3.toString(10));
+				System.out.println("----------------------------------");
+
+				getImage().setRGB(x, y,
+						Integer.parseInt(t3.toString(10)) * (-1));
+
+				// System.out.println(getImage().getRGB(x, y));
 
 			}
 
@@ -86,13 +106,13 @@ public class Image {
 		return list;
 
 	}
-	
+
 	public String extension(String exts) {
-		
+
 		int dot = exts.lastIndexOf(".");
-	
+
 		return exts.substring(dot + 1);
-	
+
 	}
 
 	/* GET E SET */
