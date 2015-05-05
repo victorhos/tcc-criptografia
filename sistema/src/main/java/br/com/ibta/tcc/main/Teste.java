@@ -12,6 +12,25 @@ public class Teste {
 	private static int KEY_LENGTH = 64;
 
 	public static void main(String[] args) {
+		
+		
+		BigInteger aa = new BigInteger("79502169818938959280363064769819069673"); 
+		String bb = aa.toString(2);
+		
+		System.out.println(bb.length());
+		System.out.println(bb);
+		
+		String zeros = "";
+		
+		for (int i = 0;i < (144 - bb.length());i++){
+			zeros += "0";
+		}
+		
+		String cc = zeros + bb;
+		
+		
+		System.out.println(">>> valor final: " + cc.length());
+
 
 		KeyRSA keys[];
 
