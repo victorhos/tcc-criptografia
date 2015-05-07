@@ -22,12 +22,12 @@ public class TesteLimpo {
 		/* Carregando imagem */
 		Image img = new Image("/Users/victor/Lenna.png", "/Users/victor/Lenna2.png");
 		img.loadImage();
+		img.setNewImage();
 		
 		/* Fazendo critogrfia da imagem*/
 		CriptoImagem ci = new CriptoImagem();
 		
 		ci.criptografarImagem(img, eng);
-		
 		
 	}
 
