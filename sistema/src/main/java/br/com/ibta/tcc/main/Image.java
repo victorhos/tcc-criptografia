@@ -27,6 +27,9 @@ public class Image {
 
 	}
 
+	/**
+	 * Carrega a imagem original
+	 */
 	public void loadImage() {
 
 		try {
@@ -46,10 +49,21 @@ public class Image {
 
 	}
 
+	/**
+	 * Cria uma nova imagem
+	 */	
 	public void createNewImage() {
 
+		setNewImage();
+		
+	}
+
+	/**
+	 * Salva a nova imagem 
+	 */	
+	public void saveNewImage() {
+		
 		File file = new File(getNewPathImage());
-		setNewImage(getImage());
 
 		try {
 
@@ -59,14 +73,14 @@ public class Image {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
 
 	public void transformImage(EngineRSA eng) {
 
-		//for (int x = 0; x < getImage().getWidth(); x++) {
+		// for (int x = 0; x < getImage().getWidth(); x++) {
 		for (int x = 0; x < 1; x++) {
-			//for (int y = 0; y < getImage().getHeight(); y++) {
+			// for (int y = 0; y < getImage().getHeight(); y++) {
 			for (int y = 0; y < 1; y++) {
 				BigInteger t1, t2, t3;
 
@@ -79,7 +93,8 @@ public class Image {
 				System.out.println("plain = " + t1.toString(10));
 				System.out.println("cipher = " + t2.toString(10));
 				System.out.println("cipher bin = " + t2.toString(2));
-				System.out.println("branco " + Integer.toBinaryString(a).length());
+				System.out.println("branco "
+						+ Integer.toBinaryString(a).length());
 				System.out.println("plain = " + t3.toString(10));
 				System.out.println("----------------------------------");
 
@@ -115,7 +130,7 @@ public class Image {
 
 	}
 
-	/* GET E SET */
+	/* Getters E Setters */
 
 	public BufferedImage getImage() {
 		return image;
@@ -129,8 +144,14 @@ public class Image {
 		return newImage;
 	}
 
-	public void setNewImage(BufferedImage newImage) {
-		this.newImage = newImage;
+	public void setNewImage() {
+
+		int width = getImage().getWidth() * 3;
+		int height = getImage().getHeight() * 2;
+
+		this.newImage = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
+
 	}
 
 	public String getPathImage() {
