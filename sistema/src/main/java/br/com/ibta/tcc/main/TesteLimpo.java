@@ -20,14 +20,22 @@ public class TesteLimpo {
 		EngineRSA eng = EngineRSA.create(keys[0], keys[1]);
 		
 		/* Carregando imagem */
-		Image img = new Image("/Users/victor/Lenna.png", "/Users/victor/Lenna2.png");
+		Image img = new Image("/Users/victor/image2px.jpg", "/Users/victor/image2pxx.jpg");
 		img.loadImage();
 		img.setNewImage();
 		
 		/* Fazendo critogrfia da imagem*/
 		CriptoImagem ci = new CriptoImagem();
 		
+		long startTime = System.nanoTime();
 		ci.criptografarImagem(img, eng);
+		long endTime = System.nanoTime();
+		
+		/* Salvando nova imagem */
+		img.saveNewImage();
+
+		
+		System.out.println(Utils.timer(endTime, startTime));
 		
 	}
 

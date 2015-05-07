@@ -27,15 +27,27 @@ public class CriptoImagem {
 
 	}
 
-	public void montaNovaImagem(Image img, int x, int y, Color[] listColor){
-		
-		int startX = x;
-		int startY = y;
-		
-		
-		
-		
-		
+	public void montaNovaImagem(Image img, int x, int y, Color[] listColor) {
+
+		int startX = x * 3;
+		int fimX = startX + 2;
+		int startY = y * 2;
+		int fimY = startY + 1;
+		int posicaoColor = 0;
+
+		for (int i = startX; i <= fimX; i++) {
+
+			for (int j = startY; j <= fimY; j++) {
+				System.out.println(i + " : " + j + " c: " + posicaoColor);
+				img.getNewImage()
+						.setRGB(i, j, listColor[posicaoColor].getRGB());
+
+				posicaoColor++;
+
+			}
+
+		}
+
 	}
-	
+
 }
