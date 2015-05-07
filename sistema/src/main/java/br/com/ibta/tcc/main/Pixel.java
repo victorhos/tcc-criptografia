@@ -13,12 +13,14 @@ public class Pixel {
 	private BigInteger pixelCriptografado;
 	private String pixelCriptografadoBinary;
 
+	/*
 	public Pixel(Integer p) {
 
 		this.pixel = p;
 		this.color = new Color(p);
 
 	}
+	*/
 
 	public Color[] getListColor() {
 
