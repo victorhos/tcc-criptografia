@@ -24,7 +24,7 @@ public class TesteLimpo {
 		img.loadImage();
 		img.setNewImage();
 		
-		/* Fazendo critogrfia da imagem*/
+		/* Critopgrafia da imagem*/
 		CriptoImagem ci = new CriptoImagem();
 		
 		long startTime = System.nanoTime();
@@ -33,6 +33,11 @@ public class TesteLimpo {
 		
 		/* Salvando nova imagem */
 		img.saveNewImage();
+		
+		/* Descritopgrafia da imagem*/
+		System.out.println("Descritopgrafia");
+		ci.descriptografarImagem(img, eng);
+		System.out.println("--------------------------------");
 
 		
 		System.out.println(Utils.timer(endTime, startTime));
