@@ -30,9 +30,11 @@ public class TesteLimpo {
 		long startTime = System.nanoTime();
 		ci.criptografarImagem(img, eng);
 		long endTime = System.nanoTime();
-		
+		System.out.println(Utils.timer(endTime, startTime));
 		/* Salvando nova imagem */
 		img.saveNewImage();
+		
+		System.out.println("---------------------------------------------");
 		
 		/* Descritopgrafia da imagem*/
 		System.out.println("Descritopgrafia");
@@ -40,7 +42,7 @@ public class TesteLimpo {
 		System.out.println("--------------------------------");
 
 		
-		System.out.println(Utils.timer(endTime, startTime));
+		
 		
 	}
 
