@@ -16,6 +16,7 @@ public class CriptoImagem {
 				BigInteger p, pixelCripto;
 
 				p = BigInteger.valueOf(img.getImage().getRGB(x, y) * (-1));
+				System.out.println(p);
 				pixelCripto = eng.encript(p);
 
 				Pixel pixel = new Pixel();
@@ -39,13 +40,15 @@ public class CriptoImagem {
 		int endY = startY + 1;
 		int posicaoColor = 0;
 
-		listColor[0] = new Color(-1);
-		listColor[1] = new Color(-2);
-		listColor[2] = new Color(-3);
-		listColor[3] = new Color(-4);
-		listColor[4] = new Color(-5);
-		listColor[5] = new Color(-6);
-
+		/*
+		listColor[0] = new Color(-2);
+		listColor[1] = new Color(-3);
+		listColor[2] = new Color(-4);
+		listColor[3] = new Color(-5);
+		listColor[4] = new Color(-6);
+		listColor[5] = new Color(-7);
+		*/
+		
 		System.out.println(">> w: " + img.getNewImage().getWidth());
 		System.out.println(">> h: " + img.getNewImage().getHeight());
 
@@ -53,7 +56,7 @@ public class CriptoImagem {
 
 			for (int j = startY; j <= endY; j++) {
 				System.out.println(j + "" + i + " color: "
-						+ listColor[posicaoColor].getRGB());
+						+ Integer.toBinaryString(listColor[posicaoColor].getRGB()));
 
 				img.getNewImage()
 						.setRGB(i, j, listColor[posicaoColor].getRGB());
@@ -83,7 +86,7 @@ public class CriptoImagem {
 			for (int y = 0; y < imgDescriptografada.getHeight(); y++) {
 				//System.out.println("Passando posicoes");
 				//System.out.println("x: " + x + " y: " + y);
-				remontaPixel(img, x, y);
+				String q = remontaPixel(img, x, y);
 			}
 
 		}
@@ -99,22 +102,28 @@ public class CriptoImagem {
 		int startY = y * 2;
 		int endY = startY + 1;
 
+		String q = "";
+		
 		for (int i = startX; i <= endX; i++) {
 
 			for (int j = startY; j <= endY; j++) {
 				System.out.println("----------start---------");
 				System.out.println(j + "" + i);
 				Integer a = img.getNewImage().getRGB(i, j);
-				String b = a.toString(2);
-				System.out.println(">>"+b);
+				String b = Integer.toBinaryString(a);
+				System.out.println(">>" + b);
 				System.out.println(">>>" + b.length());
+				q += b.substring(8, 32);
 				System.out.println("----------end-----------");
 
 			}
 
 		}
+		
+		System.out.println(">>>>>>>>>>>>>>" + q.length());
+		System.out.println(q);
 
-		return "aa";
+		return q;
 	}
 
 }

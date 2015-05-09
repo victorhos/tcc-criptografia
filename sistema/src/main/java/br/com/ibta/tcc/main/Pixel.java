@@ -60,6 +60,9 @@ public class Pixel {
 		for (int i = 0; i < (BLOCO_BIT - pixelCriptografadoBinary.length()); i++) {
 			zeros += "0";
 		}
+		
+		System.out.println(pixelCriptografadoBinary);
+		System.out.println("QUANTIDADE DE ZEROS >>>> " + zeros.length());
 
 		pixelCriptografadoBinary = zeros + pixelCriptografadoBinary;
 
