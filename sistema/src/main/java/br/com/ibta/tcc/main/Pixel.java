@@ -29,12 +29,13 @@ public class Pixel {
 		for (int i = 0; i < QTD_PIXEL; i++) {
 
 			int j = i * 24;
-			int l = j + 23;
+			int l = j + 24;
 
-			// System.out.println(">>>> inicio: " + j);
-			// System.out.println(">>>> final : " + l);
+			//System.out.println(">>>> inicio: " + j);
+			//System.out.println(">>>> final : " + l);
 
 			String ff = getPixelCriptografadoBinary().substring(j, l);
+			//System.out.println(">> "+ff);
 
 			// Color vv = new Color(Integer.parseInt(ff, 2));
 			// System.out.println("Nossa nova cor é: " + vv.getRGB());
@@ -60,9 +61,6 @@ public class Pixel {
 		for (int i = 0; i < (BLOCO_BIT - pixelCriptografadoBinary.length()); i++) {
 			zeros += "0";
 		}
-		
-		System.out.println(pixelCriptografadoBinary);
-		System.out.println("QUANTIDADE DE ZEROS >>>> " + zeros.length());
 
 		pixelCriptografadoBinary = zeros + pixelCriptografadoBinary;
 

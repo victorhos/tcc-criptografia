@@ -108,11 +108,11 @@ public class Teste {
 		t2 = eng.encript(t1);
 		t3 = eng.decript(t2);
 
-		/*
-		 * System.out.println("plain = " + t1.toString(10));
-		 * System.out.println("cipher = " + t2.toString(10));
-		 * System.out.println("plain = " + t3.toString(10));
-		 */
+		
+		  System.out.println("plain = " + t1.toString(10));
+		  System.out.println("cipher = " + t2.toString(10));
+		  System.out.println("plain = " + t3.toString(10));
+		 
 
 		Image img = new Image("/Users/victor/Lenna.png",
 				"/Users/victor/Lenna2.png");
