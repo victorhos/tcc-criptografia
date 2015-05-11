@@ -13,15 +13,6 @@ public class Pixel {
 	private BigInteger pixelCriptografado;
 	private String pixelCriptografadoBinary;
 
-	/*
-	public Pixel(Integer p) {
-
-		this.pixel = p;
-		this.color = new Color(p);
-
-	}
-	*/
-
 	public Color[] getListColor() {
 
 		Color[] listaColor = new Color[QTD_PIXEL];
@@ -31,14 +22,7 @@ public class Pixel {
 			int j = i * 24;
 			int l = j + 24;
 
-			//System.out.println(">>>> inicio: " + j);
-			//System.out.println(">>>> final : " + l);
-
 			String ff = getPixelCriptografadoBinary().substring(j, l);
-			//System.out.println(">> "+ff);
-
-			// Color vv = new Color(Integer.parseInt(ff, 2));
-			// System.out.println("Nossa nova cor é: " + vv.getRGB());
 
 			listaColor[i] = new Color(Integer.parseInt(ff, 2));
 

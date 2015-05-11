@@ -2,6 +2,8 @@ package br.com.ibta.tcc.main;
 
 //import java.util.Random;
 
+import java.awt.Graphics;
+
 import br.com.ibta.RSA.EngineRSA;
 import br.com.ibta.RSA.KeyRSA;
 import br.com.ibta.RSA.RSA;
@@ -16,34 +18,44 @@ public class TesteLimpo {
 
 		/* Criando chaves */
 		keys = RSA.createKeys(KEY_LENGTH);
-		//Random rd = new Random(System.currentTimeMillis());
 		EngineRSA eng = EngineRSA.create(keys[0], keys[1]);
-		
+
 		/* Carregando imagem */
-		Image img = new Image("/Users/victor/Lenna.png", "/Users/victor/Lenna2.png");
-		img.loadImage();
-		img.setNewImage();
-		
-		/* Critopgrafia da imagem*/
+		Image img = new Image("/Users/victor/Lenna.png",
+				"/Users/victor/Lenna2.png", "/Users/victor/Lenna3.png");
+		img.carregarImagem();
+		img.criarNovaImagem();
+		img.criarDescriptImagem();
+
+		/* Critopgrafia da imagem */
 		CriptoImagem ci = new CriptoImagem();
-		
+
 		long startTime = System.nanoTime();
 		ci.criptografarImagem(img, eng);
 		long endTime = System.nanoTime();
+
+		// Tempo de execução para criptografar a imagem
 		System.out.println(Utils.timer(endTime, startTime));
+
 		/* Salvando nova imagem */
-		img.saveNewImage();
-		
-		//System.out.println("---------------------------------------------");
-		
-		/* Descritopgrafia da imagem*/
+		img.salvarNovaImagem();
+
+		/* Descritopgrafia da imagem */
 		System.out.println("Descritopgrafia");
 		long startTime2 = System.nanoTime();
 		ci.descriptografarImagem(img, eng);
 		long endTime2 = System.nanoTime();
-		System.out.println("-------------Aguarde o timer  :)-------------------");
+		
+		img.salvarDescriptImagem();
+
+		// Tempo de execução para descriptografar a imagem
 		System.out.println(Utils.timer(endTime2, startTime2));
 		
+		
+		
+		Graphics g = img.getImagem().getGraphics();
+		g.drawImage(img.getImagem(), 0, 0, null);
+
 		
 		
 	}

@@ -3,40 +3,45 @@ package br.com.ibta.tcc.main;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 
-import br.com.ibta.RSA.EngineRSA;
+/**
+ * @author Victor Hugo
+ * @author Lilian Oliveira
+ * @author Bruna Biontino
+ * @version 0.1
+ */
 
 public class Image {
 
-	private BufferedImage image;
-	private BufferedImage newImage;
+	private BufferedImage imagem;
+	private BufferedImage novaImagem;
+	private BufferedImage descriptImagem;
 	private String extensao;
 
-	private String pathImage;
-	private String newPathImage;
+	private String pathImagem;
+	private String novoPathImagem;
+	private String descriptPathImagem;
 
-	public Image(String path, String newPath) {
+	public Image(String path, String novoPath, String descriptPathImagem) {
 
-		this.pathImage = path;
-		this.newPathImage = newPath;
+		this.pathImagem = path;
+		this.novoPathImagem = novoPath;
+		this.descriptPathImagem = descriptPathImagem;
 		this.extensao = extension(path);
 
 	}
 
 	/**
-	 * Carrega a imagem original
+	 * Carrega a imagem para ser cripttografada
 	 */
-	public void loadImage() {
+	public void carregarImagem() {
 
 		try {
 
-			File file = new File(getPathImage());
+			File file = new File(getPathImagem());
 
-			setImage(ImageIO.read(file));
+			setImagem(ImageIO.read(file));
 
 			Utils.imgSucesso();
 
@@ -50,78 +55,68 @@ public class Image {
 	}
 
 	/**
-	 * Cria uma nova imagem
-	 */	
-	public void createNewImage() {
+	 * Criar o buffer da imagem com as dimensões de largura =
+	 * (largura_img_original * 3) e altura = (altura_img_original * 2) para
+	 * receber a imagem original criptografada
+	 */
+	public void criarNovaImagem() {
 
-		setNewImage();
-		
+		setNovaImagem();
+
 	}
 
 	/**
-	 * Salva a nova imagem 
-	 */	
-	public void saveNewImage() {
-		
-		File file = new File(getNewPathImage());
+	 * Criar o buffer da imagem com as dimensões de largura =
+	 * (largura_img_criptografada / 3) e altura = (altura_img_criptografada / 2)
+	 * para receber a imagem descriptografada
+	 */
+	public void criarDescriptImagem() {
+
+		setDescriptImagem();
+
+	}
+
+	/**
+	 * Salva a imagem criptografada
+	 */
+	public void salvarNovaImagem() {
+
+		File file = new File(getNovoPathImagem());
 
 		try {
 
-			ImageIO.write(getNewImage(), getExtensao(), file);
+			ImageIO.write(getNovaImagem(), getExtensao(), file);
 			Utils.imgCriada(file.getAbsolutePath());
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	public void transformImage(EngineRSA eng) {
+	/**
+	 * Salva a imagem descriptografada
+	 */
+	public void salvarDescriptImagem() {
 
-		// for (int x = 0; x < getImage().getWidth(); x++) {
-		for (int x = 0; x < 1; x++) {
-			// for (int y = 0; y < getImage().getHeight(); y++) {
-			for (int y = 0; y < 1; y++) {
-				BigInteger t1, t2, t3;
+		File file = new File(getDescriptPathImagem());
 
-				t1 = BigInteger.valueOf(getImage().getRGB(x, y) * (-1));
-				t2 = eng.encript(t1);
-				t3 = eng.decript(t2);
+		try {
 
-				Integer a = 16777215;
-				System.out.println("----------------------------------");
-				System.out.println("plain = " + t1.toString(10));
-				System.out.println("cipher = " + t2.toString(10));
-				System.out.println("cipher bin = " + t2.toString(2));
-				System.out.println("branco "
-						+ Integer.toBinaryString(a).length());
-				System.out.println("plain = " + t3.toString(10));
-				System.out.println("----------------------------------");
+			ImageIO.write(getDescriptImagem(), getExtensao(), file);
+			Utils.imgCriada(file.getAbsolutePath());
 
-				getImage().setRGB(x, y,
-						Integer.parseInt(t3.toString(10)) * (-1));
-
-				// System.out.println(getImage().getRGB(x, y));
-
-			}
-
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
 
-	public int[] listRGB() {
-
-		int[] list;
-
-		list = getNewImage().getRGB(0, 0, getNewImage().getWidth(),
-				getNewImage().getHeight(), null, 0, getNewImage().getWidth());
-
-		list[0] = -1;
-
-		return list;
-
-	}
-
+	/**
+	 * @param exts
+	 *            é o path da imagem
+	 * @return a extensão da imagem Ex. PNG, JPG, JPEG
+	 */
 	public String extension(String exts) {
 
 		int dot = exts.lastIndexOf(".");
@@ -132,42 +127,64 @@ public class Image {
 
 	/* Getters E Setters */
 
-	public BufferedImage getImage() {
-		return image;
+	public BufferedImage getImagem() {
+		return imagem;
 	}
 
-	public void setImage(BufferedImage image) {
-		this.image = image;
+	public void setImagem(BufferedImage imagem) {
+		this.imagem = imagem;
 	}
 
-	public BufferedImage getNewImage() {
-		return newImage;
+	public BufferedImage getNovaImagem() {
+		return novaImagem;
 	}
 
-	public void setNewImage() {
+	public void setNovaImagem() {
 
-		int width = getImage().getWidth() * 3;
-		int height = getImage().getHeight() * 2;
+		int largura = getImagem().getWidth() * 3;
+		int altura = getImagem().getHeight() * 2;
 
-		this.newImage = new BufferedImage(width, height,
+		this.novaImagem = new BufferedImage(largura, altura,
 				BufferedImage.TYPE_INT_RGB);
 
 	}
 
-	public String getPathImage() {
-		return pathImage;
+	public BufferedImage getDescriptImagem() {
+		return descriptImagem;
 	}
 
-	public void setPathImage(String pathImage) {
-		this.pathImage = pathImage;
+	public void setDescriptImagem() {
+
+		int largura = getNovaImagem().getWidth() / 3;
+		int altura = getNovaImagem().getHeight() / 2;
+
+		this.descriptImagem = new BufferedImage(largura, altura,
+				BufferedImage.TYPE_INT_RGB);
+
 	}
 
-	public String getNewPathImage() {
-		return newPathImage;
+	public String getDescriptPathImagem() {
+		return descriptPathImagem;
 	}
 
-	public void setNewPathImage(String newPathImage) {
-		this.newPathImage = newPathImage;
+	public void setDescriptPathImagem(String descriptPathImagem) {
+		this.descriptPathImagem = descriptPathImagem;
+	}
+
+	public String getPathImagem() {
+		return pathImagem;
+	}
+
+	public void setPathImagem(String pathImage) {
+		this.pathImagem = pathImage;
+	}
+
+	public String getNovoPathImagem() {
+		return novoPathImagem;
+	}
+
+	public void setNovoPathImagem(String newPathImage) {
+		this.novoPathImagem = newPathImage;
 	}
 
 	public String getExtensao() {

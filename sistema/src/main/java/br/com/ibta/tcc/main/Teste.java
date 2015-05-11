@@ -115,14 +115,14 @@ public class Teste {
 		 
 
 		Image img = new Image("/Users/victor/Lenna.png",
-				"/Users/victor/Lenna2.png");
-		img.loadImage();
+				"/Users/victor/Lenna2.png", "/Users/victor/Lenna3.png");
+		img.carregarImagem();;
 
 		long startTime = System.nanoTime();
-		img.transformImage(eng);
+		//img.transformImage(eng);
 		long endTime = System.nanoTime();
 
-		img.createNewImage();
+		img.criarNovaImagem();;
 
 		System.out.println(Utils.timer(endTime, startTime));
 
