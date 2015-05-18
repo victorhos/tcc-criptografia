@@ -50,13 +50,7 @@ public class TesteLimpo {
 
 		// Tempo de execução para descriptografar a imagem
 		System.out.println(Utils.timer(endTime2, startTime2));
-		
-		
-		
-		Graphics g = img.getImagem().getGraphics();
-		g.drawImage(img.getImagem(), 0, 0, null);
 
-		
 		
 	}
 
