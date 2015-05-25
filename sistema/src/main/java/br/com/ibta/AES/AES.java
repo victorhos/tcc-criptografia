@@ -1,7 +1,5 @@
 package br.com.ibta.AES;
 
-import java.util.Random;
-
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.Cipher;
@@ -16,50 +14,84 @@ import javax.crypto.Cipher;
  */
 
 public class AES {
-	
-	static String IV = "AAAAAAAAAAAAAAAA";
-	static String plaintext = "10101010010101"; /* Note null padding */
-	static String encryptionKey = "0123456789abcdef";
-	public Random rd = new Random(System.currentTimeMillis());
 
-	public static void main(String[] args) {
-		try {
+	private String IV;
+	private String encryptionKey;
 
-			System.out.println("plain:   " + plaintext);
+	// private String IV = "AAAAAAAAAAAAAAAA";
+	// private String encryptionKey = "minhasenha123456";
+	// private String plaintext = "00000000000000000000000000000000";
 
-			byte[] cipher = encrypt(plaintext, encryptionKey);
+	public AES(String IV, String encryptionKey) {
 
-			System.out.print("cipher:  ");
-			for (int i = 0; i < cipher.length; i++)
-				System.out.print(new Integer(cipher[i]) + " ");
-			System.out.println("");
+		this.encryptionKey = encryptionKey;
+		this.IV = IV;
 
-			String decrypted = decrypt(cipher, encryptionKey);
-
-			System.out.println("decrypt: " + decrypted);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
-	public static byte[] encrypt(String plainText, String encryptionKey)
-			throws Exception {
+	/*
+	 * 
+	 * String aa = Integer.toHexString(Integer.valueOf("16777000"));
+	 * 
+	 * public static void main(String[] args) { try {
+	 * 
+	 * System.out.println("plain:   " + plaintext);
+	 * 
+	 * byte[] cipher = encrypt(plaintext, encryptionKey);
+	 * 
+	 * System.out.println("tamanho: " + cipher.length);
+	 * System.out.println("cipher:  ");
+	 * 
+	 * for (int i = 0; i < cipher.length; i++) { System.out.println(new
+	 * Integer(cipher[i]) + ""); }
+	 * 
+	 * String decrypted = decrypt(cipher, encryptionKey);
+	 * 
+	 * System.out.println("decrypt: " + decrypted);
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } }
+	 */
+
+	public byte[] encrypt(String plainText) throws Exception {
+
 		Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
-		SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"),
-				"AES");
+
+		SecretKeySpec key = new SecretKeySpec(getEncryptionKey().getBytes(
+				"UTF-8"), "AES");
 		cipher.init(Cipher.ENCRYPT_MODE, key,
 				new IvParameterSpec(IV.getBytes("UTF-8")));
+
 		return cipher.doFinal(plainText.getBytes("UTF-8"));
+
 	}
 
-	public static String decrypt(byte[] cipherText, String encryptionKey)
-			throws Exception {
+	public String decrypt(byte[] cipherText) throws Exception {
+
 		Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
-		SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"),
-				"AES");
-		cipher.init(Cipher.DECRYPT_MODE, key,
-				new IvParameterSpec(IV.getBytes("UTF-8")));
+		SecretKeySpec key = new SecretKeySpec(getEncryptionKey().getBytes(
+				"UTF-8"), "AES");
+
+		cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(getIV()
+				.getBytes("UTF-8")));
+
 		return new String(cipher.doFinal(cipherText), "UTF-8");
+
 	}
+
+	public String getIV() {
+		return IV;
+	}
+
+	public void setIV(String iV) {
+		IV = iV;
+	}
+
+	public String getEncryptionKey() {
+		return encryptionKey;
+	}
+
+	public void setEncryptionKey(String encryptionKey) {
+		this.encryptionKey = encryptionKey;
+	}
+
 }

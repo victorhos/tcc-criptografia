@@ -1,9 +1,5 @@
 package br.com.ibta.tcc.main;
 
-//import java.util.Random;
-
-import java.awt.Graphics;
-
 import br.com.ibta.RSA.EngineRSA;
 import br.com.ibta.RSA.KeyRSA;
 import br.com.ibta.RSA.RSA;
@@ -21,8 +17,10 @@ public class TesteLimpo {
 		EngineRSA eng = EngineRSA.create(keys[0], keys[1]);
 
 		/* Carregando imagem */
-		Image img = new Image("/Users/victor/Lenna.png",
-				"/Users/victor/Lenna2.png", "/Users/victor/Lenna3.png");
+		Image img = new Image(
+				"/Users/victor/image2px.jpg",
+				"/Users/victor/image2pxx.jpg",
+				"/Users/victor/image2pxxx.jpg");
 		img.carregarImagem();
 		img.criarNovaImagem();
 		img.criarDescriptImagem();
@@ -45,13 +43,12 @@ public class TesteLimpo {
 		long startTime2 = System.nanoTime();
 		ci.descriptografarImagem(img, eng);
 		long endTime2 = System.nanoTime();
-		
+
 		img.salvarDescriptImagem();
 
 		// Tempo de execução para descriptografar a imagem
 		System.out.println(Utils.timer(endTime2, startTime2));
 
-		
 	}
 
 }

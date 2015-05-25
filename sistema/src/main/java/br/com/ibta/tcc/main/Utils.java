@@ -55,9 +55,6 @@ public class Utils {
 
 		return minutes + "min " + seconds + "s " + millisecs + "ms";
 
-		//System.out.println(String.format("%-2d: %s", (i + 1), toString(endTime
-		//		- startTime)));
-
 	}
 
 }
