@@ -22,8 +22,8 @@ public class TesteLimpo {
 				"/Users/victor/image2pxx.jpg",
 				"/Users/victor/image2pxxx.jpg");
 		img.carregarImagem();
-		img.criarNovaImagem();
-		img.criarDescriptImagem();
+		img.criarNovaImagem(3, 2);
+		img.criarDescriptImagem(3, 2);
 
 		/* Critopgrafia da imagem */
 		CriptoImagem ci = new CriptoImagem();

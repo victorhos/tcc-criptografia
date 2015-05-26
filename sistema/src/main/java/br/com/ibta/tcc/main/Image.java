@@ -59,9 +59,9 @@ public class Image {
 	 * (largura_img_original * 3) e altura = (altura_img_original * 2) para
 	 * receber a imagem original criptografada
 	 */
-	public void criarNovaImagem() {
+	public void criarNovaImagem(int width, int height) {
 
-		setNovaImagem();
+		setNovaImagem(width, height);
 
 	}
 
@@ -70,9 +70,9 @@ public class Image {
 	 * (largura_img_criptografada / 3) e altura = (altura_img_criptografada / 2)
 	 * para receber a imagem descriptografada
 	 */
-	public void criarDescriptImagem() {
+	public void criarDescriptImagem(int width, int height) {
 
-		setDescriptImagem();
+		setDescriptImagem(width, height);
 
 	}
 
@@ -139,10 +139,10 @@ public class Image {
 		return novaImagem;
 	}
 
-	public void setNovaImagem() {
+	public void setNovaImagem(int width, int height) {
 
-		int largura = getImagem().getWidth() * 3;
-		int altura = getImagem().getHeight() * 2;
+		int largura = getImagem().getWidth() * width;
+		int altura = getImagem().getHeight() * height;
 
 		this.novaImagem = new BufferedImage(largura, altura,
 				BufferedImage.TYPE_INT_RGB);
@@ -153,10 +153,10 @@ public class Image {
 		return descriptImagem;
 	}
 
-	public void setDescriptImagem() {
+	public void setDescriptImagem(int width, int height) {
 
-		int largura = getNovaImagem().getWidth() / 3;
-		int altura = getNovaImagem().getHeight() / 2;
+		int largura = getNovaImagem().getWidth() / width;
+		int altura = getNovaImagem().getHeight() / height;
 
 		this.descriptImagem = new BufferedImage(largura, altura,
 				BufferedImage.TYPE_INT_RGB);

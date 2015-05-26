@@ -122,7 +122,7 @@ public class Teste {
 		//img.transformImage(eng);
 		long endTime = System.nanoTime();
 
-		img.criarNovaImagem();;
+		//img.criarNovaImagem();;
 
 		System.out.println(Utils.timer(endTime, startTime));
 
