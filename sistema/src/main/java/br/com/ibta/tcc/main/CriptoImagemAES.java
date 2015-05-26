@@ -6,8 +6,6 @@ import br.com.ibta.AES.AES;
 public class CriptoImagemAES {
 
 	static int QTD_PIXEL = 16;
-	static byte[] AAA = new byte[QTD_PIXEL];
-	static byte[] BBB = new byte[QTD_PIXEL];
 
 	public static void criptografarImagem(Image img, AES aes) throws Exception {
 
@@ -23,10 +21,6 @@ public class CriptoImagemAES {
 				color = concatZeros(color);
 
 				cipher = aes.encrypt(color);
-
-				if (x == 0 && y == 53) {
-					AAA = cipher;
-				}
 
 				for (int i = 0; i < cipher.length; i++) {
 
@@ -103,47 +97,6 @@ public class CriptoImagemAES {
 
 	}
 
-	public static void main(String[] args) throws Exception {
-
-		AES aes = new AES("AAAAAAAAAAAAAAAA", "minhasenha123456");
-
-		/* Carregando imagem */
-		Image img = new Image("/Users/victor/1920x1080.jpg",
-				"/Users/victor/1920x1080_2.jpg",
-				"/Users/victor/1920x1080_3.jpg");
-		img.carregarImagem();
-		img.criarNovaImagem(8, 2);
-		img.criarDescriptImagem(8, 2);
-
-		System.out.println("-----------------------------");
-		System.out.println("       Criptografia");
-		System.out.println("-----------------------------");
-
-		long startTime = System.nanoTime();
-		criptografarImagem(img, aes);
-		long endTime = System.nanoTime();
-
-		// Tempo de execução para criptografar a imagem
-		System.out.println(Utils.timer(endTime, startTime));
-
-		/* Salvando nova imagem */
-		img.salvarNovaImagem();
-
-		System.out.println("-----------------------------");
-		System.out.println("      Descriptografia");
-		System.out.println("-----------------------------");
-
-		long startTime2 = System.nanoTime();
-		descriptografarImagem(img, aes);
-		long endTime2 = System.nanoTime();
-
-		img.salvarDescriptImagem();
-
-		// Tempo de execução para descriptografar a imagem
-		System.out.println(Utils.timer(endTime2, startTime2));
-
-	}
-
 	public static byte[] remontaPixel(Image img, int x, int y) throws Exception {
 
 		int startX = x * 8;
@@ -167,9 +120,45 @@ public class CriptoImagemAES {
 
 		}
 
-		BBB = hh;
-
 		return hh;
+
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		AES aes = new AES("AAAAAAAAAAAAAAAA", "minhasenha123456");
+
+		/* Carregando imagem */
+		Image img = new Image(
+				"/Users/victor/1920x1080.jpg",
+				"/Users/victor/1920x1080_2.jpg",
+				"/Users/victor/1920x1080_3.jpg");
+		img.carregarImagem();
+		img.criarNovaImagem(8, 2);
+		img.criarDescriptImagem(8, 2);
+
+		System.out.println("Criptografando...");
+
+		long startTime = System.nanoTime();
+		criptografarImagem(img, aes);
+		long endTime = System.nanoTime();
+
+		// Tempo de execução para criptografar a imagem
+		System.out.println(Utils.timer(endTime, startTime));
+
+		/* Salvando nova imagem */
+		img.salvarNovaImagem();
+
+		System.out.println("Descriptografando...");
+
+		long startTime2 = System.nanoTime();
+		descriptografarImagem(img, aes);
+		long endTime2 = System.nanoTime();
+
+		img.salvarDescriptImagem();
+
+		// Tempo de execução para descriptografar a imagem
+		System.out.println(Utils.timer(endTime2, startTime2));
 
 	}
 
