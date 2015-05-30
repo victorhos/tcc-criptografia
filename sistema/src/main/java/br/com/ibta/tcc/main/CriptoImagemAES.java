@@ -130,9 +130,9 @@ public class CriptoImagemAES {
 
 		/* Carregando imagem */
 		Image img = new Image(
-				"/Users/victor/1920x1080.jpg",
-				"/Users/victor/1920x1080_2.jpg",
-				"/Users/victor/1920x1080_3.jpg");
+				"/Users/victor/Google Drive/Tcc/Imagens Testes/AES/rss.png",
+				"/Users/victor/Google Drive/Tcc/Imagens Testes/AES/rss_cript_aes.png",
+				"/Users/victor/Google Drive/Tcc/Imagens Testes/AES/rss_descript_aes.png");
 		img.carregarImagem();
 		img.criarNovaImagem(8, 2);
 		img.criarDescriptImagem(8, 2);

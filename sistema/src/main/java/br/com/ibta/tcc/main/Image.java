@@ -91,7 +91,9 @@ public class Image {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		Utils.tamandoDoArquivo(file);
+		
 	}
 
 	/**
@@ -109,6 +111,8 @@ public class Image {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Utils.tamandoDoArquivo(file);
 
 	}
 

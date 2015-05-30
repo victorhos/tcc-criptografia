@@ -18,9 +18,9 @@ public class TesteLimpo {
 
 		/* Carregando imagem */
 		Image img = new Image(
-				"/Users/victor/image2px.jpg",
-				"/Users/victor/image2pxx.jpg",
-				"/Users/victor/image2pxxx.jpg");
+		"/Users/victor/Google Drive/Tcc/Imagens Testes/RSA/rss.png",
+		"/Users/victor/Google Drive/Tcc/Imagens Testes/RSA/rss_cript_rsa.png",
+		"/Users/victor/Google Drive/Tcc/Imagens Testes/RSA/rss_descript_rsa.png");
 		img.carregarImagem();
 		img.criarNovaImagem(3, 2);
 		img.criarDescriptImagem(3, 2);

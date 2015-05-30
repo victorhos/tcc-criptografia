@@ -18,39 +18,12 @@ public class AES {
 	private String IV;
 	private String encryptionKey;
 
-	// private String IV = "AAAAAAAAAAAAAAAA";
-	// private String encryptionKey = "minhasenha123456";
-	// private String plaintext = "00000000000000000000000000000000";
-
 	public AES(String IV, String encryptionKey) {
 
 		this.encryptionKey = encryptionKey;
 		this.IV = IV;
 
 	}
-
-	/*
-	 * 
-	 * String aa = Integer.toHexString(Integer.valueOf("16777000"));
-	 * 
-	 * public static void main(String[] args) { try {
-	 * 
-	 * System.out.println("plain:   " + plaintext);
-	 * 
-	 * byte[] cipher = encrypt(plaintext, encryptionKey);
-	 * 
-	 * System.out.println("tamanho: " + cipher.length);
-	 * System.out.println("cipher:  ");
-	 * 
-	 * for (int i = 0; i < cipher.length; i++) { System.out.println(new
-	 * Integer(cipher[i]) + ""); }
-	 * 
-	 * String decrypted = decrypt(cipher, encryptionKey);
-	 * 
-	 * System.out.println("decrypt: " + decrypted);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } }
-	 */
 
 	public byte[] encrypt(String plainText) throws Exception {
 
@@ -77,6 +50,8 @@ public class AES {
 		return new String(cipher.doFinal(cipherText), "UTF-8");
 
 	}
+	
+	/* GETTERS E SETTERS */
 
 	public String getIV() {
 		return IV;

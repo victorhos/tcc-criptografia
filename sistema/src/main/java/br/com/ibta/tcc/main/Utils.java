@@ -1,5 +1,7 @@
 package br.com.ibta.tcc.main;
 
+import java.io.File;
+
 public class Utils {
 
 	public static String LINHA = "-----------------------------------";
@@ -33,7 +35,7 @@ public class Utils {
 	}
 
 	public static String timer(long endTime, long startTime) {
-		
+
 		long nanoSecs = (endTime - startTime);
 
 		int minutes = (int) (nanoSecs / 60000000000.0);
@@ -54,6 +56,30 @@ public class Utils {
 			return minutes + "min " + seconds + "s";
 
 		return minutes + "min " + seconds + "s " + millisecs + "ms";
+
+	}
+
+	public static void tamandoDoArquivo(File file) {
+
+		if (file.exists()) {
+
+			double bytes = file.length();
+			double kilobytes = (bytes / 1024);
+			double megabytes = (kilobytes / 1024);
+
+			System.out.println(LINHA);
+			
+			System.out.println("bytes : " + bytes);
+			System.out.println("kilobytes : " + kilobytes);
+			System.out.println("megabytes : " + megabytes);
+			
+			System.out.println(LINHA);
+
+		} else {
+		
+			System.out.println("File does not exists!");
+		
+		}
 
 	}
 
